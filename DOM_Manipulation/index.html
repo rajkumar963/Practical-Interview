@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM List Manipulation</title>
+  <style>
+        body {
+                font-family: Arial, sans-serif; 
+                background: #fafafa; 
+                padding: 30px;
+            }
+        .container { 
+            margin-bottom: 18px;
+        }
+        #userInput { 
+            padding: 8px; 
+            font-size: 1rem; 
+        }
+        #addBtn { 
+            padding: 8px 22px; 
+            font-size: 1rem; 
+            background: #43a047; 
+            color: #fff; 
+            border: none; 
+            border-radius: 4px; 
+            cursor: pointer; 
+            font-weight: bold; 
+            margin-left: 8px; 
+        }
+        #addBtn:hover { 
+            background: #36871d; 
+        }
+        ul { 
+            list-style: none; 
+            padding-left: 0; 
+            max-width: 320px; 
+        }
+        li { 
+            background: #fff; 
+            margin-bottom: 10px; 
+            padding: 10px 13px; 
+            border-radius: 6px; 
+            display: flex; 
+            align-items: 
+            center; justify-content: 
+            space-between; 
+            box-shadow: 0 2px 6px rgba(50,50,50,0.07);
+        }
+        .delBtn { 
+            background: #e53935; 
+            color: #fff; 
+            border: none; 
+            border-radius: 3px; 
+            padding: 7px 14px; 
+            cursor: pointer; 
+            font-weight: 500; 
+            font-size: 0.95em; 
+        }
+        .delBtn:hover { 
+            background: #b71c1c; 
+        }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <input type="text" id="userInput" placeholder="Enter item..." />
+    <button id="addBtn">Add</button>
+  </div>
+  <ul id="itemList"></ul>
+
+  <script>
+    const addBtn = document.getElementById('addBtn');
+    const userInput = document.getElementById('userInput');
+    const itemList = document.getElementById('itemList');
+
+    addBtn.addEventListener('click', function() {
+      const text = userInput.value.trim();
+      if (text !== '') {
+        const li = document.createElement('li');
+        li.textContent = text;
+
+        // Delete button
+        const delBtn = document.createElement('button');
+        delBtn.textContent = 'Delete';
+        delBtn.className = 'delBtn';
+
+        delBtn.addEventListener('click', function() {
+          li.remove();
+        });
+
+        // Style and attach
+        li.appendChild(delBtn);
+        itemList.appendChild(li);
+
+        userInput.value = '';
+      }
+    });
+  </script>
+</body>
+</html>
